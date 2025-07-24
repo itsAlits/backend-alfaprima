@@ -1,0 +1,504 @@
+{
+    "title": "Alfaprima Backend API Documentation",
+    "base_url": "http://localhost:8000/api",
+    "authentication": "Bearer Token (Sanctum)",
+    "endpoints": [
+        {
+            "section": "AUTHENTICATION",
+            "apis": [
+                {
+                    "name": "REGISTER",
+                    "method": "POST",
+                    "url": "/register",
+                    "auth_required": false,
+                    "request": {
+                        "nim_nip": "2025003",
+                        "password": "password123",
+                        "password_confirmation": "password123"
+                    },
+                    "response_success": {
+                        "success": true,
+                        "message": "User registered successfully",
+                        "data": {
+                            "user": {
+                                "id": 5,
+                                "name": "2025003",
+                                "email": "2025003@alfaprima.com",
+                                "nim_nip": "2025003",
+                                "role": {
+                                    "id": 2,
+                                    "name": "Mahasiswa"
+                                }
+                            },
+                            "token": "1|randomTokenString"
+                        }
+                    }
+                },
+                {
+                    "name": "LOGIN",
+                    "method": "POST",
+                    "url": "/login",
+                    "auth_required": false,
+                    "request": {
+                        "nim_nip": "2025001",
+                        "password": "password"
+                    },
+                    "response_success": {
+                        "success": true,
+                        "message": "Login successful",
+                        "data": {
+                            "user": {
+                                "id": 3,
+                                "name": "Hana",
+                                "email": "hana@alfaprima.com",
+                                "nim_nip": "2025001"
+                            },
+                            "token": "2|randomTokenString"
+                        }
+                    }
+                },
+                {
+                    "name": "GET PROFILE",
+                    "method": "GET",
+                    "url": "/profile",
+                    "auth_required": true,
+                    "response_success": {
+                        "success": true,
+                        "message": "Profile retrieved successfully",
+                        "data": {
+                            "user": {
+                                "id": 3,
+                                "name": "Hana",
+                                "email": "hana@alfaprima.com",
+                                "nim_nip": "2025001",
+                                "role": {
+                                    "id": 2,
+                                    "name": "Mahasiswa"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "LOGOUT",
+                    "method": "POST",
+                    "url": "/logout",
+                    "auth_required": true,
+                    "response_success": {
+                        "success": true,
+                        "message": "Logged out successfully"
+                    }
+                }
+            ]
+        },
+        {
+            "section": "USERS",
+            "apis": [
+                {
+                    "name": "GET ALL USERS",
+                    "method": "GET",
+                    "url": "/users",
+                    "auth_required": true,
+                    "role_required": "Dosen",
+                    "response_success": {
+                        "success": true,
+                        "message": "Users retrieved successfully",
+                        "data": [
+                            {
+                                "id": 1,
+                                "name": "Prof. Dr. Rama Wijaya",
+                                "email": "rama.wijaya@alfaprima.com",
+                                "nim_nip": "DSN001",
+                                "role": {
+                                    "id": 1,
+                                    "name": "Dosen"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "UPDATE USER",
+                    "method": "PUT",
+                    "url": "/users/{id}",
+                    "auth_required": true,
+                    "request": {
+                        "name": "John Doe Updated",
+                        "email": "john.updated@alfaprima.com",
+                        "phone_number": "081234567890",
+                        "address": "Jl. Baru No. 123"
+                    },
+                    "response_success": {
+                        "success": true,
+                        "message": "User updated successfully",
+                        "data": {
+                            "id": 3,
+                            "name": "John Doe Updated",
+                            "email": "john.updated@alfaprima.com"
+                        }
+                    }
+                },
+                {
+                    "name": "DELETE USER",
+                    "method": "DELETE",
+                    "url": "/users/{id}",
+                    "auth_required": true,
+                    "role_required": "Dosen",
+                    "response_success": {
+                        "success": true,
+                        "message": "User deleted successfully"
+                    }
+                },
+                {
+                    "name": "GET ALL MAHASISWA",
+                    "method": "GET",
+                    "url": "/mahasiswa",
+                    "auth_required": true,
+                    "response_success": {
+                        "success": true,
+                        "message": "Mahasiswa retrieved successfully",
+                        "data": [
+                            {
+                                "id": 3,
+                                "name": "Hana",
+                                "nim_nip": "2025001",
+                                "role": {
+                                    "name": "Mahasiswa"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "GET ALL DOSEN",
+                    "method": "GET",
+                    "url": "/dosen",
+                    "auth_required": true,
+                    "response_success": {
+                        "success": true,
+                        "message": "Dosen retrieved successfully",
+                        "data": [
+                            {
+                                "id": 1,
+                                "name": "Prof. Dr. Rama Wijaya",
+                                "nim_nip": "DSN001",
+                                "role": {
+                                    "name": "Dosen"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "section": "MATAKULIAH",
+            "apis": [
+                {
+                    "name": "GET ALL MATAKULIAH",
+                    "method": "GET",
+                    "url": "/matakuliah",
+                    "auth_required": true,
+                    "response_success": {
+                        "success": true,
+                        "data": [
+                            {
+                                "id": 1,
+                                "kode_matakuliah": "IF101",
+                                "nama_matakuliah": "Algoritma dan Pemrograman",
+                                "sks": 3,
+                                "semester": 1
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "CREATE MATAKULIAH",
+                    "method": "POST",
+                    "url": "/matakuliah",
+                    "auth_required": true,
+                    "role_required": "Dosen",
+                    "request": {
+                        "kode_matakuliah": "IF104",
+                        "nama_matakuliah": "Pemrograman Web",
+                        "semester": 3,
+                        "sks": 3
+                    },
+                    "response_success": {
+                        "success": true,
+                        "message": "Matakuliah created successfully",
+                        "data": {
+                            "id": 4,
+                            "kode_matakuliah": "IF104",
+                            "nama_matakuliah": "Pemrograman Web",
+                            "semester": 3,
+                            "sks": 3
+                        }
+                    }
+                },
+                {
+                    "name": "GET MATAKULIAH BY ID",
+                    "method": "GET",
+                    "url": "/matakuliah/{id}",
+                    "auth_required": true,
+                    "role_required": "Dosen",
+                    "response_success": {
+                        "success": true,
+                        "data": {
+                            "id": 1,
+                            "kode_matakuliah": "IF101",
+                            "nama_matakuliah": "Algoritma dan Pemrograman",
+                            "sks": 3,
+                            "semester": 1
+                        }
+                    }
+                },
+                {
+                    "name": "UPDATE MATAKULIAH",
+                    "method": "PUT",
+                    "url": "/matakuliah/{id}",
+                    "auth_required": true,
+                    "role_required": "Dosen",
+                    "request": {
+                        "kode_matakuliah": "IF104",
+                        "nama_matakuliah": "Pemrograman Web Advanced",
+                        "semester": 3,
+                        "sks": 4
+                    },
+                    "response_success": {
+                        "success": true,
+                        "message": "Matakuliah updated successfully",
+                        "data": {
+                            "id": 1,
+                            "kode_matakuliah": "IF104",
+                            "nama_matakuliah": "Pemrograman Web Advanced"
+                        }
+                    }
+                },
+                {
+                    "name": "DELETE MATAKULIAH",
+                    "method": "DELETE",
+                    "url": "/matakuliah/{id}",
+                    "auth_required": true,
+                    "role_required": "Dosen",
+                    "response_success": {
+                        "success": true,
+                        "message": "Matakuliah deleted successfully"
+                    }
+                }
+            ]
+        },
+        {
+            "section": "KELAS",
+            "apis": [
+                {
+                    "name": "GET ALL KELAS",
+                    "method": "GET",
+                    "url": "/kelas",
+                    "auth_required": true,
+                    "response_success": {
+                        "success": true,
+                        "message": "Kelas retrieved successfully",
+                        "data": [
+                            {
+                                "id": 1,
+                                "matakuliah_id": 1,
+                                "user_id": 1,
+                                "nama_kelas": "Pemrograman Web A",
+                                "tahun_ajaran": "2024/2025",
+                                "matakuliah": {
+                                    "id": 1,
+                                    "nama_matakuliah": "Algoritma dan Pemrograman",
+                                    "kode_matakuliah": "IF101"
+                                },
+                                "user": {
+                                    "id": 1,
+                                    "name": "Prof. Dr. Rama Wijaya"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "CREATE KELAS",
+                    "method": "POST",
+                    "url": "/kelas",
+                    "auth_required": true,
+                    "request": {
+                        "matakuliah_id": 1,
+                        "user_id": 1,
+                        "nama_kelas": "Pemrograman Web A",
+                        "tahun_ajaran": "2024/2025"
+                    },
+                    "response_success": {
+                        "success": true,
+                        "message": "Kelas created successfully",
+                        "data": {
+                            "id": 6,
+                            "matakuliah_id": 1,
+                            "user_id": 1,
+                            "nama_kelas": "Pemrograman Web A",
+                            "tahun_ajaran": "2024/2025"
+                        }
+                    }
+                },
+                {
+                    "name": "GET KELAS BY ID",
+                    "method": "GET",
+                    "url": "/kelas/{id}",
+                    "auth_required": true,
+                    "response_success": {
+                        "success": true,
+                        "data": {
+                            "id": 1,
+                            "nama_kelas": "Pemrograman Web A",
+                            "tahun_ajaran": "2024/2025"
+                        }
+                    }
+                },
+                {
+                    "name": "UPDATE KELAS",
+                    "method": "PUT",
+                    "url": "/kelas/{id}",
+                    "auth_required": true,
+                    "request": {
+                        "nama_kelas": "Pemrograman Web B"
+                    },
+                    "response_success": {
+                        "success": true,
+                        "message": "Kelas updated successfully",
+                        "data": {
+                            "id": 1,
+                            "nama_kelas": "Pemrograman Web B"
+                        }
+                    }
+                },
+                {
+                    "name": "DELETE KELAS",
+                    "method": "DELETE",
+                    "url": "/kelas/{id}",
+                    "auth_required": true,
+                    "response_success": {
+                        "success": true,
+                        "message": "Kelas deleted successfully"
+                    }
+                }
+            ]
+        },
+        {
+            "section": "KRS",
+            "apis": [
+                {
+                    "name": "GET ALL KRS",
+                    "method": "GET",
+                    "url": "/krs",
+                    "auth_required": true,
+                    "response_success": {
+                        "success": true,
+                        "message": "KRS retrieved successfully",
+                        "data": [
+                            {
+                                "id": 1,
+                                "user_id": 3,
+                                "kelas_id": 1,
+                                "nilai_huruf": "A",
+                                "nilai_angka": 85.5,
+                                "status": "aktif",
+                                "user": {
+                                    "id": 3,
+                                    "name": "Hana",
+                                    "nim_nip": "2025001"
+                                },
+                                "kelas": {
+                                    "id": 1,
+                                    "nama_kelas": "Pemrograman Web A"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "CREATE KRS",
+                    "method": "POST",
+                    "url": "/krs",
+                    "auth_required": true,
+                    "request": {
+                        "user_id": 3,
+                        "kelas_id": 1,
+                        "status": "aktif"
+                    },
+                    "response_success": {
+                        "success": true,
+                        "message": "KRS created successfully",
+                        "data": {
+                            "id": 7,
+                            "user_id": 3,
+                            "kelas_id": 1,
+                            "status": "aktif",
+                            "nilai_huruf": null,
+                            "nilai_angka": null
+                        }
+                    }
+                },
+                {
+                    "name": "GET KRS BY ID",
+                    "method": "GET",
+                    "url": "/krs/{id}",
+                    "auth_required": true,
+                    "response_success": {
+                        "success": true,
+                        "data": {
+                            "id": 1,
+                            "user_id": 3,
+                            "kelas_id": 1,
+                            "nilai_huruf": "A",
+                            "nilai_angka": 85.5,
+                            "status": "aktif"
+                        }
+                    }
+                },
+                {
+                    "name": "UPDATE KRS",
+                    "method": "PUT",
+                    "url": "/krs/{id}",
+                    "auth_required": true,
+                    "request": {
+                        "nilai_huruf": "A",
+                        "nilai_angka": 85.5,
+                        "status": "lulus"
+                    },
+                    "response_success": {
+                        "success": true,
+                        "message": "KRS updated successfully",
+                        "data": {
+                            "id": 1,
+                            "nilai_huruf": "A",
+                            "nilai_angka": 85.5,
+                            "status": "lulus"
+                        }
+                    }
+                },
+                {
+                    "name": "DELETE KRS",
+                    "method": "DELETE",
+                    "url": "/krs/{id}",
+                    "auth_required": true,
+                    "response_success": {
+                        "success": true,
+                        "message": "KRS deleted successfully"
+                    }
+                }
+            ]
+        }
+    ],
+    "notes": {
+        "authentication": "Include 'Authorization: Bearer {token}' header for protected routes",
+        "roles": "Dosen role required for user management and matakuliah CRUD operations",
+        "error_responses": {
+            "401": "Unauthenticated - Invalid or missing token",
+            "403": "Unauthorized - Insufficient permissions",
+            "404": "Resource not found",
+            "422": "Validation failed"
+        }
+    }
+}

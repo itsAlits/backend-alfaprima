@@ -19,7 +19,7 @@ class AuthController extends Controller
                 'password' => 'required|string|min:8|confirmed',
             ]);
 
-            $role_id = 1; // Default role for student
+            $role_id = 2; //defaultnya student
             $email = $data['nim_nip'] . '@alfaprima.com';
             $name = $data['nim_nip'];
 
