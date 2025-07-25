@@ -31,7 +31,7 @@ class KelasController extends Controller
             $data = $request->validate([
                 'matakuliah_id' => 'required|exists:matakuliahs,id',
                 'user_id' => 'required|exists:users,id',
-                'tahun_akademik' => 'required|string|max:10',
+                'tahun_ajaran' => 'required|string|max:10',
                 'nama_kelas' => 'required|string|max:255',
             ]);
 
@@ -66,7 +66,7 @@ class KelasController extends Controller
             $data = $request->validate([
                 'matakuliah_id' => 'sometimes|exists:matakuliahs,id',
                 'user_id' => 'sometimes|exists:users,id',
-                'tahun_akademik' => 'sometimes|string|max:10',
+                'tahun_ajaran' => 'sometimes|string|max:10',
                 'nama_kelas' => 'sometimes|string|max:255',
             ]);
 

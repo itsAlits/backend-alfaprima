@@ -9,7 +9,7 @@ class kelas extends Model
     protected $fillable = [
         'matakuliah_id',
         'user_id',
-        'tahun_akademik',
+        'tahun_ajaran',
         'nama_kelas',
     ];
 
@@ -20,5 +20,10 @@ class kelas extends Model
     {
         return $this->belongsTo(Matakuliah::class);
     }
+
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 
 }

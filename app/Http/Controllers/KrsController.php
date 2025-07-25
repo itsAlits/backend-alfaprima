@@ -7,6 +7,25 @@ use App\Models\krs;
 
 class KrsController extends Controller
 {
+
+    public function getAllKrs()
+    {
+        try {
+            $krs = krs::with(['kelas', 'kelas.matakuliah', 'user'])->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'KRS retrieved successfully',
+                'data' => $krs
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrieve KRS',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
     //read krs by user_id
     public function getKrsByUserId($userId)
     {

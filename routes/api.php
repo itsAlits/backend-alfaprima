@@ -22,13 +22,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/mahasiswa', [UserController::class, 'getMahasiswa']);
     Route::get('/dosen', [UserController::class, 'getDosen']);
     Route::put('/users/{id}', [UserController::class, 'updateUser']);
-
-
+    
+    
     // matkul
     Route::get('/matakuliah', [MatakuliahController::class, 'GetAllMatkul']);
-
-
     
+    
+    Route::get('/kelas', [KelasController::class, 'GetAllKelas']);
+    
+    Route::get('/krs', [KrsController::class, 'GetAllKrs']);
     // KRS
     Route::get('/krs/{id}/{tahunAkademik}', [KrsController::class, 'getKrsByUserIdAndTahunAkademik']);
     Route::get('/krs/{id}', [KrsController::class, 'getKrsByUserId']);
@@ -55,7 +57,6 @@ Route::middleware(['auth:sanctum', 'role:Dosen'])->group(function () {
     Route::delete('/matakuliah/{id}', [MatakuliahController::class, 'DeleteMatkul']);
 
     //kelas
-    Route::get('/kelas', [KelasController::class, 'GetAllKelas']);
     Route::get('/kelas/{id}', [KelasController::class, 'GetKelas']);
     Route::post('/kelas', [KelasController::class, 'CreateKelas']);
     Route::put('/kelas/{id}', [KelasController::class, 'EditKelas']);

@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'gender' => 'Laki-laki',
             'religion' => 'Hindu',
             'profile_picture' => null,
-            'role_id' => 1,
+            'role_id' => 2,
         ]);
 
         User::create([
@@ -40,36 +40,50 @@ class UserSeeder extends Seeder
             'gender' => 'Laki-laki',
             'religion' => 'Hindu',
             'profile_picture' => null,
-            'role_id' => 1,
+            'role_id' => 2,
         ]);
         
         // Mahasiswa Users
         User::create([
+            'nim_nip' => '2025001',
             'name' => 'Hana',
             'email' => 'hana@alfaprima.com',
             'password' => bcrypt('password'),
-            'nim_nip' => '2025001',
             'phone_number' => '081234567892',
             'address' => 'Jl. Dekat Gacoan No. 20, Jimbaran',
             'birth_date' => '2003-08-22',
             'gender' => 'Perempuan',
             'religion' => 'Katolik',
             'profile_picture' => null,
-            'role_id' => 2,
+            'role_id' => 3,
         ]);
 
         User::create([
+            'nim_nip' => '2025002',
             'name' => 'Ngakan Made Alit Wiradhanta',
             'email' => 'alitwira08@alfaprima.com',
             'password' => bcrypt('password'),
-            'nim_nip' => '2021002',
             'phone_number' => '081234567893',
             'address' => 'Jl. Tunggak Bingin No. 30, Sanur',
             'birth_date' => '2003-12-10',
             'gender' => 'Laki-laki',
             'religion' => 'Hindu',
             'profile_picture' => null,
-            'role_id' => 2,
+            'role_id' => 3,
+        ]);
+
+        User::create([
+            'name' => 'Dewi Ayu',
+            'email' => 'DewiAyu@alfaprima.com',
+            'password' => bcrypt('password'),
+            'nim_nip' => '2025003',
+            'phone_number' => '081234567323',
+            'address' => 'Jl. Tunggak Bingin No. 30, Pejeng',
+            'birth_date' => '2003-12-10',
+            'gender' => 'Laki-laki',
+            'religion' => 'Islam',
+            'profile_picture' => null,
+            'role_id' => 3,
         ]);
     }
 }
